@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: background-color 0.3s;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #password {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            width: 80%;
+            word-break: break-all;
+            user-select: text;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .toggle-theme {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: #333;
+            font-size: 20px;
+        }
+
+        /* Estilos para o tema escuro */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .container.dark-mode {
+            background-color: #555;
+        }
+
+        .toggle-theme.dark-mode {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-theme" onclick="toggleDarkMode()">🌙</div>
+    <div class="container">
+        <h1>Gerador de Senhas</h1>
+        <div>
+            <p>Sua senha:</p>
+            <p id="password"></p>
+        </div>
+        <button id="generate">Gerar Senha</button>
+    </div>
+
+    <script>
+        document.getElementById("generate").addEventListener("click", generatePassword);
+
+        function generatePassword() {
+            const length = 12; // Defina o comprimento da senha desejada
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+"; // Caracteres permitidos na senha
+            let password = "";
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+
+            document.getElementById("password").textContent = password;
+        }
+
+        // Função para alternar entre os temas claro e escuro
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+</body>
+</html>
